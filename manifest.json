@@ -1,0 +1,16 @@
+{
+  "short_name": "FullChamba",
+  "name": "Full Chamba Tacna",
+  "description": "Trabajo confiable en la Ciudad Heroica",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#00d1ce",
+  "icons": [
+    {
+      "src": "fotos/logo-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
+}
