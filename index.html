@@ -1,36 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Full Chamba Tacna</title>
-	<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Chamba Tacna</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; margin: 0; padding: 20px; }
+        header { text-align: center; padding: 20px; }
+        
+        /* Buscador */
+        .search-container { max-width: 600px; margin: 0 auto 30px; }
+        .search-bar { width: 100%; padding: 12px; border-radius: 25px; border: 1px solid #ddd; }
+
+        /* Contenedor de Cuadrícula */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Estilo de Tarjeta tipo CodePen */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-5px); }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%; /* Imagen Circular */
+            object-fit: cover;
+            border: 3px solid #00d2d3;
+            margin-bottom: 10px;
+        }
+
+        h2 { font-size: 1.2rem; margin: 10px 0 5px; color: #333; }
+        .oficio { color: #666; font-weight: bold; margin-bottom: 15px; }
+
+        .btn-whatsapp {
+            background-color: #25d366; /* Verde WhatsApp */
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-<header>
-    <h1>FULL CHAMBA <span>TACNA</span></h1>
-    <p>Trabajo confiable en la Ciudad Heroica</p>
-</header>
 
-<main class="contenedor-especialistas">
-    <div class="tarjeta">
-        <div class="perfil">
-            <img src="https://picsum.photos/200" alt="Felipe Garcia">
-            <div class="verificado">✔</div>
+    <header>
+        <h1>Full Chamba <span style="color: #ff4d4d;">Tacna</span></h1>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Buscar por nombre u oficio...">
         </div>
-        <h3>Felipe Garcia</h3>
-        <p class="oficio">Entrenador</p>
-        <p class="distrito">📍 Cono Sur</p>
+    </header>
 
-        <div class="galeria-trabajos">
-            <div class="cuadro"><img src="https://picsum.photos/seed/1/200" alt="Trabajo 1></div>
-            <div class="cuadro"><img src="https://picsum.photos/seed/2/200" alt="Trabajo 2></div>
-            <div class="cuadro"><img src="https://picsum.photos/seed/3/200" alt="Trabajo 3"></div>
+    <main class="grid-container">
+        <div class="card">
+            <img src="https://picsum.photos/seed/1/200" class="profile-img">
+            <h2>Felipe García ✔</h2>
+            <p class="oficio">Entrenador</p>
+            <a href="https://wa.me/519XXXXXXXX" class="btn-whatsapp">WhatsApp</a>
         </div>
-        
-        <button class="btn-contacto">Contactar</button>
-    </div>
-</main>
+
+        <div class="card">
+            <img src="https://picsum.photos/seed/2/200" class="profile-img">
+            <h2>Farid Ode</h2>
+            <p class="oficio">Soldador</p>
+            <a href="https://wa.me/519XXXXXXXX" class="btn-whatsapp">WhatsApp</a>
+        </div>
+
+        <div class="card">
+            <img src="https://picsum.photos/seed/3/200" class="profile-img">
+            <h2>Nixon Quispe</h2>
+            <p class="oficio">Orador</p>
+            <a href="https://wa.me/519XXXXXXXX" class="btn-whatsapp">WhatsApp</a>
+        </div>
+
+        <div class="card">
+            <img src="https://picsum.photos/seed/4/200" class="profile-img">
+            <h2>Dra. Ana Luz</h2>
+            <p class="oficio">Dentista</p>
+            <a href="https://wa.me/519XXXXXXXX" class="btn-whatsapp">WhatsApp</a>
+        </div>
+    </main>
 
 </body>
 </html>
