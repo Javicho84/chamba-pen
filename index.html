@@ -3,96 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full Chamba Tacna</title>
+    <title>Full Chamba Tacna | Especialistas</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa; margin: 0; padding: 20px; }
-        header { text-align: center; padding: 20px; }
+        :root { --primary: #00d2d3; --secondary: #ff4d4d; --bg: #f8f9fa; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); margin: 0; padding: 0; text-align: center; }
         
-        /* Buscador */
-        .search-container { max-width: 600px; margin: 0 auto 30px; }
-        .search-bar { width: 100%; padding: 12px; border-radius: 25px; border: 1px solid #ddd; }
+        /* Header y Registro */
+        header { background: white; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+        
+        /* Buscador y Filtros */
+        .controls { max-width: 800px; margin: 20px auto; padding: 0 15px; }
+        .search-bar { width: 100%; padding: 12px 20px; border-radius: 30px; border: 1px solid #ddd; font-size: 16px; margin-bottom: 15px; outline: none; }
+        .categories { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+        .cat-btn { background: white; border: 1px solid #ddd; padding: 8px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s; }
+        .cat-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
-        /* Contenedor de Cuadrícula */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+        /* Cuadrícula de Trabajadores */
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; max-width: 1200px; margin: 0 auto; padding: 20px;
         }
 
-        /* Estilo de Tarjeta tipo CodePen */
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.2s;
+        /* Tarjeta Estilo Profesional */
+        .card { 
+            background: white; border-radius: 15px; padding: 25px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; 
+            border: 1px solid transparent;
         }
-        .card:hover { transform: translateY(-5px); }
-
-        .profile-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%; /* Imagen Circular */
-            object-fit: cover;
-            border: 3px solid #00d2d3;
-            margin-bottom: 10px;
+        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        .profile-img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary); margin-bottom: 15px; }
+        .card h3 { margin: 10px 0 5px; font-size: 1.3em; }
+        .card .oficio { color: #00b8b9; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; font-size: 0.9em; }
+        
+        .btn-whatsapp { 
+            background-color: #25d366; color: white; text-decoration: none; 
+            padding: 12px; display: block; border-radius: 8px; font-weight: bold; transition: 0.3s;
         }
-
-        h2 { font-size: 1.2rem; margin: 10px 0 5px; color: #333; }
-        .oficio { color: #666; font-weight: bold; margin-bottom: 15px; }
-
-        .btn-whatsapp {
-            background-color: #25d366; /* Verde WhatsApp */
-            color: white;
-            text-decoration: none;
-            padding: 10px;
-            display: block;
-            border-radius: 5px;
-            font-weight: bold;
-        }
+        .btn-whatsapp:hover { background-color: #1ebe57; }
+        
+        /* Ocultar tarjetas que no coinciden */
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Full Chamba <span style="color: #ff4d4d;">Tacna</span></h1>
-        <div class="search-container">
-            <input type="text" class="search-bar" placeholder="Buscar por nombre u oficio...">
-        </div>
+        <div class="logo">FULL CHAMBA <span style="color: var(--secondary);">TACNA</span></div>
+        <p>Encuentra al especialista ideal en la Ciudad Heroica</p>
     </header>
 
-    <main class="grid-container">
-        <div class="card">
-            <img src="https://picsum.photos/seed/1/200" class="profile-img">
-            <h2>Felipe García ✔</h2>
-            <p class="oficio">Entrenador</p>
-            <a href="https://wa.me/519XXXXXXXX" class="btn-whatsapp">WhatsApp</a>
+    <div class="controls">
+        <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Buscar por nombre o especialidad...">
+        
+        <div class="categories">
+            <button class="cat-btn active" onclick="filterCategory('todos')">Todos</button>
+            <button class="cat-btn" onclick="filterCategory('Salud')">Salud</button>
+            <button class="cat-btn" onclick="filterCategory('Construcción')">Construcción</button>
+            <button class="cat-btn" onclick="filterCategory('Técnico')">Técnico</button>
+            <button class="cat-btn" onclick="filterCategory('Deportes')">Deportes</button>
         </div>
+    </div>
 
-        <div class="card">
-            <img src="https://picsum.photos/seed/2/200" class="profile-img">
-            <h2>Farid Ode</h2>
-            <p class="oficio">Soldador</p>
-            <a href="https://wa.me/519XXXXXXXX" class="btn-whatsapp">WhatsApp</a>
-        </div>
+    <main class="grid-container" id="workerGrid">
+        </main>
 
-        <div class="card">
-            <img src="https://picsum.photos/seed/3/200" class="profile-img">
-            <h2>Nixon Quispe</h2>
-            <p class="oficio">Orador</p>
-            <a href="https://wa.me/519XXXXXXXX" class="btn-whatsapp">WhatsApp</a>
-        </div>
+    <script>
+        // BASE DE DATOS DE TRABAJADORES
+        const trabajadores = [
+            { nombre: "Felipe García", oficio: "Entrenador", cat: "Deportes", img: "1", cel: "51900000000" },
+            { nombre: "Dra. Ana Luz", oficio: "Dentista", cat: "Salud", img: "10", cel: "51900000000" },
+            { nombre: "Juan Reparaciones", oficio: "Gasfitero", cat: "Construcción", img: "20", cel: "51900000000" },
+            { nombre: "Ing. Carla M.", oficio: "Electricista", cat: "Técnico", img: "30", cel: "51900000000" },
+            { nombre: "Roberto Soldados", oficio: "Soldador", cat: "Construcción", img: "40", cel: "51900000000" },
+            { nombre: "Lucía Fitness", oficio: "Yoga Instructor", cat: "Deportes", img: "50", cel: "51900000000" },
+            { nombre: "Marcos Tec", oficio: "Mecánico", cat: "Técnico", img: "60", cel: "51900000000" },
+            { nombre: "Dra. Sofía", oficio: "Pediatra", cat: "Salud", img: "70", cel: "51900000000" }
+        ];
 
-        <div class="card">
-            <img src="https://picsum.photos/seed/4/200" class="profile-img">
-            <h2>Dra. Ana Luz</h2>
-            <p class="oficio">Dentista</p>
-            <a href="https://wa.me/519XXXXXXXX" class="btn-whatsapp">WhatsApp</a>
-        </div>
-    </main>
+        const grid = document.getElementById('workerGrid');
+        const searchInput = document.getElementById('searchInput');
 
+        // Función para mostrar trabajadores
+        function displayWorkers(list) {
+            grid.innerHTML = '';
+            list.forEach(t => {
+                grid.innerHTML += `
+                    <div class="card" data-category="${t.cat}">
+                        <img src="https://picsum.photos/seed/${t.img}/200" class="profile-img">
+                        <h3>${t.nombre} ✔</h3>
+                        <p class="oficio">${t.oficio}</p>
+                        <a href="https://wa.me/${t.cel}" class="btn-whatsapp" target="_blank">WhatsApp</a>
+                    </div>
+                `;
+            });
+        }
+
+        // Buscador en vivo
+        searchInput.addEventListener('input', (e) => {
+            const text = e.target.value.toLowerCase();
+            const filtered = trabajadores.filter(t => 
+                t.nombre.toLowerCase().includes(text) || t.oficio.toLowerCase().includes(text)
+            );
+            displayWorkers(filtered);
+        });
+
+        // Filtro por botones
+        function filterCategory(cat) {
+            // Estilo de botones
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.innerText.toLowerCase() === cat.toLowerCase()) btn.classList.add('active');
+            });
+
+            if(cat === 'todos') {
+                displayWorkers(trabajadores);
+            } else {
+                const filtered = trabajadores.filter(t => t.cat === cat);
+                displayWorkers(filtered);
+            }
+        }
+
+        // Carga inicial
+        displayWorkers(trabajadores);
+    </script>
 </body>
 </html>
