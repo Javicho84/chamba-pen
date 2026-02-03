@@ -3,130 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Full Chamba Tacna | Especialistas</title>
+    <title>Full Chamba Tacna | Profesionales</title>
     <style>
-        :root { --primary: #00d2d3; --secondary: #ff4d4d; --bg: #f8f9fa; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--bg); margin: 0; padding: 0; text-align: center; }
+        :root { --primary: #00d2d3; --secondary: #ff4d4d; --blue: #3498db; --bg: #f0f2f5; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg); margin: 0; padding: 0; }
         
-        /* Header y Registro */
-        header { background: white; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-        .logo { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
-        
-        /* Buscador y Filtros */
-        .controls { max-width: 800px; margin: 20px auto; padding: 0 15px; }
-        .search-bar { width: 100%; padding: 12px 20px; border-radius: 30px; border: 1px solid #ddd; font-size: 16px; margin-bottom: 15px; outline: none; }
-        .categories { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
-        .cat-btn { background: white; border: 1px solid #ddd; padding: 8px 15px; border-radius: 20px; cursor: pointer; transition: 0.3s; }
-        .cat-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        /* Header */
+        header { background: #fff; padding: 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { font-size: 28px; font-weight: bold; color: #333; }
+        .logo span { color: var(--secondary); }
 
-        /* Cuadrícula de Trabajadores */
-        .grid-container { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 20px; max-width: 1200px; margin: 0 auto; padding: 20px;
-        }
+        /* Formulario de Registro */
+        .registration-container { max-width: 600px; margin: 20px auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .registration-container h2 { margin-top: 0; font-size: 1.2rem; color: #444; border-bottom: 2px solid var(--blue); padding-bottom: 10px; }
+        .form-group { margin-bottom: 15px; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 15px; }
+        .btn-register { background: var(--blue); color: white; border: none; padding: 14px; width: 100%; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-register:hover { background: #2980b9; }
 
-        /* Tarjeta Estilo Profesional */
-        .card { 
-            background: white; border-radius: 15px; padding: 25px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: 0.3s; 
-            border: 1px solid transparent;
-        }
-        .card:hover { transform: translateY(-5px); border-color: var(--primary); }
-        .profile-img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid var(--primary); margin-bottom: 15px; }
-        .card h3 { margin: 10px 0 5px; font-size: 1.3em; }
-        .card .oficio { color: #00b8b9; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; font-size: 0.9em; }
+        /* Buscador */
+        .search-section { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+        .search-bar { width: 100%; padding: 15px 25px; border-radius: 30px; border: 1px solid #ddd; font-size: 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); outline: none; }
+
+        /* Cuadrícula de Tarjetas */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1200px; margin: 0 auto; padding: 20px; }
         
-        .btn-whatsapp { 
-            background-color: #25d366; color: white; text-decoration: none; 
-            padding: 12px; display: block; border-radius: 8px; font-weight: bold; transition: 0.3s;
-        }
-        .btn-whatsapp:hover { background-color: #1ebe57; }
+        /* Tarjeta Pro */
+        .card { background: white; border-radius: 15px; padding: 25px; text-align: center; box-shadow: 0 6px 12px rgba(0,0,0,0.05); transition: 0.3s; position: relative; overflow: hidden; }
+        .card:hover { transform: translateY(-8px); }
+        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--primary); }
         
-        /* Ocultar tarjetas que no coinciden */
-        .hidden { display: none; }
+        .profile-img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 4px solid #f0f0f0; margin-bottom: 15px; }
+        .card h3 { margin: 10px 0 5px; color: #333; }
+        .card .badge { display: inline-block; background: #e1fdfd; color: var(--primary); padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; font-weight: bold; margin-bottom: 15px; }
+        
+        .btn-whatsapp { background: #25d366; color: white; text-decoration: none; padding: 12px; display: block; border-radius: 8px; font-weight: bold; transition: 0.3s; }
+        .btn-whatsapp:hover { background: #1ebe57; transform: scale(1.02); }
+
+        footer { text-align: center; padding: 40px; color: #888; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">FULL CHAMBA <span style="color: var(--secondary);">TACNA</span></div>
-        <p>Encuentra al especialista ideal en la Ciudad Heroica</p>
+        <div class="logo">FULL CHAMBA <span>TACNA</span></div>
+        <p>Conectando el talento tacneño con quien lo necesita</p>
     </header>
 
-    <div class="controls">
-        <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Buscar por nombre o especialidad...">
-        
-        <div class="categories">
-            <button class="cat-btn active" onclick="filterCategory('todos')">Todos</button>
-            <button class="cat-btn" onclick="filterCategory('Salud')">Salud</button>
-            <button class="cat-btn" onclick="filterCategory('Construcción')">Construcción</button>
-            <button class="cat-btn" onclick="filterCategory('Técnico')">Técnico</button>
-            <button class="cat-btn" onclick="filterCategory('Deportes')">Deportes</button>
-        </div>
+    <section class="registration-container">
+        <h2>🚀 Únete como Especialista</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <input type="text" id="regNombre" placeholder="Tu nombre completo" required>
+            </div>
+            <div class="form-group">
+                <select id="regOficio" required>
+                    <option value="">Selecciona tu Oficio</option>
+                    <option value="Gasfitero">Gasfitero</option>
+                    <option value="Electricista">Electricista</option>
+                    <option value="Dentista">Dentista</option>
+                    <option value="Entrenador">Entrenador</option>
+                    <option value="Mecánico">Mecánico</option>
+                    <option value="Soldador">Soldador</option>
+                    <option value="Otros">Otros</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="number" id="regWhatsApp" placeholder="Número de WhatsApp (9XXXXXXXX)" required>
+            </div>
+            <button type="submit" class="btn-register">PUBLICAR MI PERFIL</button>
+        </form>
+    </section>
+
+    <div class="search-section">
+        <input type="text" id="searchInput" class="search-bar" placeholder="🔍 Buscar por nombre o especialidad en Tacna...">
     </div>
 
-    <main class="grid-container" id="workerGrid">
+    <main class="grid" id="workerGrid">
         </main>
 
-    <script>
-        // BASE DE DATOS DE TRABAJADORES
-        const trabajadores = [
-            { nombre: "Felipe García", oficio: "Entrenador", cat: "Deportes", img: "1", cel: "51900000000" },
-            { nombre: "Dra. Ana Luz", oficio: "Dentista", cat: "Salud", img: "10", cel: "51900000000" },
-            { nombre: "Juan Reparaciones", oficio: "Gasfitero", cat: "Construcción", img: "20", cel: "51900000000" },
-            { nombre: "Ing. Carla M.", oficio: "Electricista", cat: "Técnico", img: "30", cel: "51900000000" },
-            { nombre: "Roberto Soldados", oficio: "Soldador", cat: "Construcción", img: "40", cel: "51900000000" },
-            { nombre: "Lucía Fitness", oficio: "Yoga Instructor", cat: "Deportes", img: "50", cel: "51900000000" },
-            { nombre: "Marcos Tec", oficio: "Mecánico", cat: "Técnico", img: "60", cel: "51900000000" },
-            { nombre: "Dra. Sofía", oficio: "Pediatra", cat: "Salud", img: "70", cel: "51900000000" }
-        ];
+    <footer>
+        <p>&copy; 2026 Full Chamba Tacna - Ciudad Heroica</p>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } 
+        from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // CONFIGURACIÓN DE TU PROYECTO (COPIA ESTO DESDE TU CONSOLA FIREBASE)
+        const firebaseConfig = {
+            apiKey: "TU_API_KEY_AQUI",
+            authDomain: "tu-proyecto.firebaseapp.com",
+            projectId: "tu-proyecto-id",
+            storageBucket: "tu-proyecto.appspot.com",
+            messagingSenderId: "tu-sender-id",
+            appId: "tu-app-id"
+        };
+
+        // Inicializar
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const workersRef = collection(db, "trabajadores");
 
         const grid = document.getElementById('workerGrid');
         const searchInput = document.getElementById('searchInput');
+        let listaTrabajadores = [];
 
-        // Función para mostrar trabajadores
-        function displayWorkers(list) {
+        // 1. LEER DATOS EN TIEMPO REAL
+        onSnapshot(query(workersRef, orderBy("nombre")), (snapshot) => {
+            listaTrabajadores = [];
+            snapshot.forEach((doc) => {
+                listaTrabajadores.push(doc.data());
+            });
+            renderWorkers(listaTrabajadores);
+        });
+
+        // 2. FUNCIÓN PARA PINTAR LAS TARJETAS
+        function renderWorkers(data) {
             grid.innerHTML = '';
-            list.forEach(t => {
+            data.forEach(t => {
                 grid.innerHTML += `
-                    <div class="card" data-category="${t.cat}">
-                        <img src="https://picsum.photos/seed/${t.img}/200" class="profile-img">
+                    <div class="card">
+                        <img src="https://picsum.photos/seed/${t.nombre}/200" class="profile-img">
                         <h3>${t.nombre} ✔</h3>
-                        <p class="oficio">${t.oficio}</p>
-                        <a href="https://wa.me/${t.cel}" class="btn-whatsapp" target="_blank">WhatsApp</a>
+                        <div class="badge">${t.oficio}</div>
+                        <a href="https://wa.me/51${t.cel}" class="btn-whatsapp" target="_blank">Escribir por WhatsApp</a>
                     </div>
                 `;
             });
         }
 
-        // Buscador en vivo
+        // 3. BUSCADOR EN VIVO
         searchInput.addEventListener('input', (e) => {
-            const text = e.target.value.toLowerCase();
-            const filtered = trabajadores.filter(t => 
-                t.nombre.toLowerCase().includes(text) || t.oficio.toLowerCase().includes(text)
+            const term = e.target.value.toLowerCase();
+            const filtrados = listaTrabajadores.filter(t => 
+                t.nombre.toLowerCase().includes(term) || 
+                t.oficio.toLowerCase().includes(term)
             );
-            displayWorkers(filtered);
+            renderWorkers(filtrados);
         });
 
-        // Filtro por botones
-        function filterCategory(cat) {
-            // Estilo de botones
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.classList.remove('active');
-                if(btn.innerText.toLowerCase() === cat.toLowerCase()) btn.classList.add('active');
-            });
+        // 4. GUARDAR EN FIREBASE
+        document.getElementById('registrationForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.innerText = "Registrando...";
+            btn.disabled = true;
 
-            if(cat === 'todos') {
-                displayWorkers(trabajadores);
-            } else {
-                const filtered = trabajadores.filter(t => t.cat === cat);
-                displayWorkers(filtered);
+            const nuevo = {
+                nombre: document.getElementById('regNombre').value,
+                oficio: document.getElementById('regOficio').value,
+                cel: document.getElementById('regWhatsApp').value,
+                fecha: new Date()
+            };
+
+            try {
+                await addDoc(workersRef, nuevo);
+                alert("¡Excelente! Ya eres parte de Full Chamba Tacna.");
+                e.target.reset();
+            } catch (err) {
+                alert("Error al guardar: " + err.message);
+            } finally {
+                btn.innerText = "PUBLICAR MI PERFIL";
+                btn.disabled = false;
             }
-        }
-
-        // Carga inicial
-        displayWorkers(trabajadores);
+        });
     </script>
 </body>
 </html>
